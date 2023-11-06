@@ -1,20 +1,21 @@
 'use strict'
 
+const { faker } = require('@faker-js/faker')
+
+const authors = []
+
+for (let i = 0; i < 10; i++) {
+  authors.push({
+    name: faker.person.fullName(),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Authors', [
-      {
-        name: 'John Doe',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: 'Jane Doe',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ])
+    await queryInterface.bulkInsert('Authors', authors)
   },
 
   async down(queryInterface, Sequelize) {

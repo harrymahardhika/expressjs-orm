@@ -1,7 +1,5 @@
 const express = require('express')
 const app = express()
-require('dotenv').config()
-const port = process.env.APP_PORT
 const { Author, Book } = require('./app/models')
 
 app.get('/authors', async (req, res) => {
@@ -34,6 +32,4 @@ app.get('/books/:id', async (req, res) => {
   res.json(book)
 })
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
-})
+module.exports = app
